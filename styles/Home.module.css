@@ -149,3 +149,31 @@
     filter: invert(1);
   }
 }
+
+
+
+
+.videoContainer {
+  position: relative; /* Usa posicionamento relativo */
+  width: 50vw; /* Largura baseada na viewport */
+  height: 88.89vw; /* Altura calculada para manter aspecto de 9:16 (50*16/9) */
+  max-height: 90vh; /* Máxima altura possível para manter dentro da viewport */
+  max-width: 10vh; /* Largura máxima para manter proporção de 9:16 (90*9/16) */
+  margin: auto; /* Centraliza na página */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex; /* Usa Flexbox para alinhamento */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+@media (min-width: 1024px) { /* Em telas grandes, você pode ajustar o tamanho do player */
+  .videoContainer {
+    width: 30vw;
+    height: 53.34vw; /* (30*16/9) */
+    max-height: 60vh;
+    max-width: 33.75vh; /* (60*9/16) */
+  }
+}
