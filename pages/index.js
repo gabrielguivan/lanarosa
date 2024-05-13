@@ -34,7 +34,7 @@ export default function Home() {
         <div className={interzin.variable}><h1 className={styles.title}>
           Lana Rosa Studio
         </h1></div>
-        <p className={styles.description}>@lanarosastudio</p>
+        <p className={styles.description}></p>
 
         <div className={styles.grid}>
         {/*<a href="https://www.kooapp.com/profile/gabrielguivan" className={styles.card}>
