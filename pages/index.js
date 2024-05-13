@@ -34,7 +34,7 @@ export default function Home() {
         <div className={interzin.variable}><h1 className={styles.title}>
           Lana Rosa Studio
         </h1></div>
-        <p className={styles.description}></p>
+        <p className={styles.description}>@lanarosastudio</p>
 
         <div className={styles.grid}>
         {/*<a href="https://www.kooapp.com/profile/gabrielguivan" className={styles.card}>
@@ -46,18 +46,22 @@ export default function Home() {
         */}
           <a href="https://www.instagram.com/lanarosastudio/" className={styles.card}>
             <h2>Instagram &rarr;</h2>
+            <p>Acompanhe meu dia a dia através dos Stories e Reels.</p>
           </a>
 
           <a href="https://wa.me/5555999453068" className={styles.card}>
             <h2>WhatsApp &rarr;</h2>
+            <p>Obtenha uma cotação diretamente comigo.</p>
           </a>
 
           <a href="malito:rosahelenat@outlook.com" className={styles.card}>
             <h2>Email &rarr;</h2>
+            <p>Endereço para consultas profissionais.</p>
           </a>
 
           <Link href="/video" className={styles.card}>
             <h2>Entrevistas &rarr;</h2>
+            <p>Veja entrevistas e aparições na mídia.</p>
           </Link>
         </div>
       </main>
