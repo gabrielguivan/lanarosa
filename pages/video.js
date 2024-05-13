@@ -1,12 +1,9 @@
-import videoplayernext from '../components/videoplayernext';
+import VideoPlayer from '../components/VideoPlayer';
 
-const HomePage = () => {
+export default function Home() {
     return (
-      <div>
-        <h1>Bem-vindo ao Meu Site</h1>
-        <VideoPlayer url="https://www.youtube.com/watch?v=btxtLrgL32o" />
-      </div>
-    );
-  };
-  
-  export default HomePage;
+        <div>
+        <VideoPlayer videoId="8bHHohAXjeyLf39frxnLfG02yZjBhPe77nB7MM8iM901I" />
+        </div>
+    )
+  }
