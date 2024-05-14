@@ -54,7 +54,7 @@ export default function Home() {
             <p>Obtenha uma cotação diretamente comigo.</p>
           </a>
 
-          <a href="malito:rosahelenat@outlook.com" className={styles.card}>
+          <a href="mailto:rosahelenat@outlook.com" className={styles.card}>
             <h2>Email &rarr;</h2>
             <p>Endereço para consultas profissionais.</p>
           </a>
