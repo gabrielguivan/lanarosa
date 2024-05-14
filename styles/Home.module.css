@@ -56,7 +56,7 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-clip: text;
-  font-family: var(--font-interzin1);
+  font-family: [--font-zilla];
   letter-spacing: -0.13rem;
   font-weight: 700;
 }

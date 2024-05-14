@@ -4,12 +4,21 @@ import styles from '../styles/Home.module.css'
 import profilePic from '../public/perfil.jpg'
 import Link from 'next/link'
 import Interzin from '@next/font/local'
+import { Zilla_Slab } from 'next/font/google'
 
 const interzin = Interzin({
   src: '../fonte/inter-var-subset-latin-opsz-sep27.woff2',
   variable: '--font-interzin1',
   weight: '700'
 })
+
+const zilla = Zilla_Slab({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-zilla',
+  subsets: ['latin'] })
 
 export default function Home() {
   return (
