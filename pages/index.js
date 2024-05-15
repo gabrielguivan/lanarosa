@@ -1,24 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import profilePic from '../public/perfil.jpg'
+import profilePic from '../public/foto.jpeg'
 import Link from 'next/link'
-import Interzin from '@next/font/local'
-import { Zilla_Slab } from 'next/font/google'
-
-const interzin = Interzin({
-  src: '../fonte/inter-var-subset-latin-opsz-sep27.woff2',
-  variable: '--font-interzin1',
-  weight: '700'
-})
-
-const zilla = Zilla_Slab({
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-zilla',
-  subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -40,7 +24,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <Image src={profilePic} quality="100" className={styles.image} width={100} height={100} alt="Foto de Perfil" priority="true" placeholder='blur'/>
-        <div className={interzin.variable}><h1 className={styles.title}>
+        <div><h1 className={styles.title}>
           Lana Rosa Studio
         </h1></div>
         <p className={styles.description}></p>
