@@ -5,6 +5,7 @@ import { Inter } from '@next/font/google';
 
 const pt = Inter({
   subsets: ['latin'],
+  variable: '--font-pt',
 })
 
 function MyApp({ Component, pageProps }) {

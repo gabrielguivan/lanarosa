@@ -91,7 +91,7 @@
 
 .card {
   margin: 1rem;
-  padding: 1.4rem;
+  padding: 1.7rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
@@ -111,13 +111,14 @@
 
 .card h2 {
   margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .card p {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 400;
 }
 
 .logo {
