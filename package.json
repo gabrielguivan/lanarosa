@@ -17,6 +17,8 @@
     "react-youtube": "^10.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3"
   }

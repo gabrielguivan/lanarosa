@@ -3,13 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import profilePic from '../public/foto.jpg'
 import Link from 'next/link'
-import { Zilla_Slab } from '@next/font/google';
 
-const pz = Zilla_Slab({
-  subsets: ['latin'],
-  variable: '--font-zilla',
-  weight: ["400","500","600","700"]
-})
 
 export default function Home() {
   return (
@@ -28,15 +22,12 @@ export default function Home() {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-
       <main className={styles.main}>
         <Image src={profilePic} quality="100" className={styles.image} width={100} height={100} alt="Foto de Perfil" priority="true" placeholder='blur' />
         <div>
-          <div className={pz.className}>
           <h1 className={styles.title}>
             Lana Rosa Studio
           </h1>
-          </div>
           <p className={styles.description}>Artista plástica em Canela na Serra Gaúcha</p>
         </div>
 
