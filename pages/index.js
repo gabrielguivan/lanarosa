@@ -3,6 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import profilePic from '../public/foto.jpg'
 import Link from 'next/link'
+import { Zilla_Slab } from '@next/font/google';
+
+const pz = Zilla_Slab({
+  subsets: ['latin'],
+  variable: '--font-zilla',
+  weight: ["400","500","600","700"]
+})
 
 export default function Home() {
   return (
@@ -12,7 +19,7 @@ export default function Home() {
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Website da artesã plástica Lana Rosa" />
+        <meta name="description" content="Website da artista plástica Lana Rosa na Serra Gaúcha." />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -25,10 +32,12 @@ export default function Home() {
       <main className={styles.main}>
         <Image src={profilePic} quality="100" className={styles.image} width={100} height={100} alt="Foto de Perfil" priority="true" placeholder='blur' />
         <div>
+          <div className={pz.className}>
           <h1 className={styles.title}>
             Lana Rosa Studio
           </h1>
-          <p className={styles.description}>Artesã plástica em Canela na Serra Gaúcha</p>
+          </div>
+          <p className={styles.description}>Artista plástica em Canela na Serra Gaúcha</p>
         </div>
 
         <div className={styles.grid}>
