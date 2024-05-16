@@ -61,8 +61,8 @@ export default function Home() {
             <p>Endereço para consultas profissionais.</p>
           </a>
           <Link href="/sobre" className={styles.card}>
-            <h2>Biografia &rarr;</h2>
-            <p>Aqui você confere mais sobre mim.</p>
+            <h2>Sobre mim &rarr;</h2>
+            <p>Aqui você confere minha biografia.</p>
           </Link>
 
           {/*<Link href="/video" className={styles.card}>
