@@ -20,7 +20,6 @@ export default function Home() {
     animate="animate"
     exit="exit"
     variants={pageTransition}
-    className={styles.container}
     >
     <div className={styles.container}>
       <Head>
