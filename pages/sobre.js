@@ -24,14 +24,14 @@ export default function Sobre() {
     >
     <div className={styles.container}>
       <Head>
-        <title>Sobre Mim - Lana Rosa Studio</title>
-        <meta name="description" content="Biografia da artesã plástica Lana Rosa" />
+        <title>Biografia - Lana Rosa Studio</title>
+        <meta name="description" content="Biografia da artista plástica Lana Rosa" />
       </Head>
 
       <main className={styles.main}>
         <Image src={profilePic} quality="100" className={styles.image} width={100} height={100} alt="Foto de Perfil" priority="true" placeholder="blur" />
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>Sobre Mim</h1>
+          <h1 className={styles.title}>Biografia</h1>
           <p className={styles.description}>
             Sou uma artista plástica localizada em Canela, Rio Grande do Sul. Meu trabalho envolve
             explorar diferentes formas de expressão artística, especialmente através da manipulação da lã ovina. Estou sempre em busca de inspiração na natureza e na cultura local.
