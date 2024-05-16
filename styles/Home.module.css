@@ -187,3 +187,14 @@
     max-width: 33.75vh;
   }
 }
+
+.backToHome {
+  margin-top: 2rem;
+  /* Adicione mais estilos se necessário */
+}
+
+.textContainer {
+  max-width: 800px; /* ou a largura que melhor se adequar ao seu design */
+  margin: 0rem auto;
+  padding: 0 2rem;
+}

@@ -3,10 +3,25 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import profilePic from '../public/foto.jpg'
 import Link from 'next/link'
+import { motion } from 'framer-motion';
+
+const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 }
+};
+
 
 
 export default function Home() {
   return (
+    <motion.div
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    variants={pageTransition}
+    className={styles.container}
+    >
     <div className={styles.container}>
       <Head>
         <title>Lana Rosa Studio</title>
@@ -46,6 +61,10 @@ export default function Home() {
             <h2>Email &rarr;</h2>
             <p>Endereço para consultas profissionais.</p>
           </a>
+          <Link href="/sobre" className={styles.card}>
+            <h2>Biografia &rarr;</h2>
+            <p>Aqui você confere mais sobre mim.</p>
+          </Link>
 
           {/*<Link href="/video" className={styles.card}>
             <h2>Entrevistas &rarr;</h2>
@@ -57,5 +76,6 @@ export default function Home() {
           feito por @gabrielguivan :)
       </footer>
     </div>
+    </motion.div>
   )
 }

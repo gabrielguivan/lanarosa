@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
+import { AnimatePresence } from 'framer-motion';
  
 // Font files can be colocated inside of `app`
 const myFont = localFont({
@@ -15,9 +16,11 @@ const pt = Inter({
   variable: '--font-pt',
 })
 
+
 function MyApp({ Component, pageProps }) {
   return (
   <>
+  <AnimatePresence mode="wait"></AnimatePresence>
   <main className={myFont.className}>
     <Component {...pageProps} />
     <Analytics />
