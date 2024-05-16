@@ -39,7 +39,7 @@ export default function Home() {
         */}
           <a href="https://www.instagram.com/lanarosastudio/" className={styles.card}>
             <h2>Instagram &rarr;</h2>
-            <p>Acompanhe meu dia a dia através dos Stories e Reels.</p>
+            <p>Acompanhe meu dia a dia nos Stories e Reels.</p>
           </a>
 
           <a href="https://wa.me/5555999453068" className={styles.card}>

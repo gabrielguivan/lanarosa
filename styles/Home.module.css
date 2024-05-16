@@ -1,5 +1,5 @@
 .boc {
-  color: rgba(253,29,29,1);
+  color: var(--text-color);
   font-size: 1rem;
 }
 
@@ -10,21 +10,26 @@
 .main {
   min-height: 100vh;
   padding: 4rem 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .footer {
   display: flex;
-  flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--border-color);
   justify-content: center;
   align-items: center;
+  background-color: var(--background-color);
 }
 
 .footer a {
@@ -34,51 +39,22 @@
   flex-grow: 1;
 }
 
-.title a {
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: none;
-}
-
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  background: black;
-  background-size: 100%;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  background-clip: text;
-  letter-spacing: -0.09rem;
-  word-spacing: -0.1rem;
-  font-weight: 600;
-}
-
-.title,
-.description {
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: var(--primary-color);
   text-align: center;
+  letter-spacing: -0.1rem;
 }
 
 .description {
-  margin: 0rem 0;
+  margin: 1rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  text-align: center;
+  color: var(--text-color);
 }
 
 .grid {
@@ -87,26 +63,30 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+  margin-top: 0rem;
 }
 
 .card {
   margin: 1rem;
-  padding: 1.7rem;
+  padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
   max-width: 300px;
   height: 180px;
+  background-color: var(--background-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: var(--hover-color);
+  border-color: var(--hover-color);
+  transform: scale(1.05);
 }
 
 .card h2 {
@@ -117,13 +97,13 @@
 .card p {
   margin: 0;
   font-size: 1.2rem;
-  line-height: 1.2;
+  line-height: 1.3;
   font-weight: 400;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.image {
+  border-radius: 50%;
+  margin: 9px;
 }
 
 @media (max-width: 600px) {
@@ -133,48 +113,39 @@
   }
 }
 
-.image {
-  border-radius: 50%;
-  margin: 9px;
-}
-
 @media (prefers-color-scheme: dark) {
   .card,
   .footer {
-    border-color: #222;
+    border-color: var(--dark-border-color);
+  }
+  .card {
+    background-color: var(--dark-background-color);
   }
   .code {
-    background: #111;
+    background: var(--dark-background-color);
   }
   .logo img {
     filter: invert(1);
   }
 }
 
-
-
-
 .videoContainer {
-  position: relative; /* Usa posicionamento relativo */
-  width: 50vw; /* Largura baseada na viewport */
-  height: 88.89vw; /* Altura calculada para manter aspecto de 9:16 (50*16/9) */
-  max-height: 90vh; /* Máxima altura possível para manter dentro da viewport */
-  max-width: 10vh; /* Largura máxima para manter proporção de 9:16 (90*9/16) */
-  margin: auto; /* Centraliza na página */
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex; /* Usa Flexbox para alinhamento */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  position: relative;
+  width: 50vw;
+  height: 88.89vw;
+  max-height: 90vh;
+  max-width: 50vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (min-width: 1024px) { /* Em telas grandes, você pode ajustar o tamanho do player */
+@media (min-width: 1024px) {
   .videoContainer {
     width: 30vw;
-    height: 53.34vw; /* (30*16/9) */
+    height: 53.34vw;
     max-height: 60vh;
-    max-width: 33.75vh; /* (60*9/16) */
+    max-width: 33.75vh;
   }
 }
