@@ -4,7 +4,7 @@
 }
 
 .container {
-  padding: 0 0rem;
+  padding: 0 2rem;
 }
 
 .main {
@@ -195,5 +195,4 @@
 
 .textContainer {
   margin: 0rem auto;
-  padding: 0 2rem;
 }
