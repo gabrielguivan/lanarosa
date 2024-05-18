@@ -1,19 +1,19 @@
-// components/CheckoutForm.js
 import React, { useState } from 'react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import axios from 'axios';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
 
     if (!stripe || !elements) {
-      setLoading(false);
       return;
     }
 
@@ -26,64 +26,51 @@ const CheckoutForm = () => {
 
     if (error) {
       setError(error.message);
-      setLoading(false);
     } else {
-      const response = await fetch('/api/pagar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paymentMethodId: paymentMethod.id }),
-      });
-
-      const paymentResult = await response.json();
-      if (paymentResult.error) {
-        setError(paymentResult.error);
-      } else {
-        console.log(paymentResult);
+      try {
+        const response = await axios.post('/api/payment', {
+          paymentMethodId: paymentMethod.id,
+        });
+        console.log('Payment successful:', response);
+      } catch (error) {
+        console.error('Error processing payment:', error);
       }
-      setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="checkout-form">
-      <div className="form-group">
-        <label>Número do Cartão</label>
-        <CardElement className="card-element" />
-      </div>
-      <button type="submit" disabled={!stripe || loading} className="submit-button">
-        {loading ? 'Processando...' : 'Pagar'}
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pagar
       </button>
-      {error && <div className="error-message">{error}</div>}
+      {error && <div>{error}</div>}
       <style jsx>{`
         .checkout-form {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .card-element {
+          max-width: 400px;
+          margin: 0 auto;
           padding: 1rem;
-          border: 1px solid var(--border-color);
+          border: 1px solid #eaeaea;
           border-radius: 4px;
           background: #f9f9f9;
         }
-        .submit-button {
-          background: var(--primary-color);
-          color: var(--dark-text-color);
+        button {
+          background: #75633a;
+          color: white;
           border: none;
-          padding: 0.75rem;
-          border-radius: 5px;
+          padding: 0.75rem 1.5rem;
+          border-radius: 4px;
           cursor: pointer;
           transition: background 0.3s ease;
         }
-        .submit-button:hover {
-          background: var(--hover-color);
+        button:disabled {
+          background: #cccccc;
+          cursor: not-allowed;
         }
-        .error-message {
+        button:hover {
+          background: #513939;
+        }
+        div {
           color: red;
           margin-top: 1rem;
         }
@@ -92,4 +79,10 @@ const CheckoutForm = () => {
   );
 };
 
-export default CheckoutForm;
+const WrappedCheckoutForm = () => (
+  <Elements stripe={stripePromise}>
+    <CheckoutForm />
+  </Elements>
+);
+
+export default WrappedCheckoutForm;
