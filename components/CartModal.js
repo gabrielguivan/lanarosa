@@ -1,4 +1,4 @@
-// components/CartModal.js
+import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 
@@ -19,7 +19,15 @@ const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
             <ul>
               {cartItems.map((item, index) => (
                 <li key={index} className="cart-item">
-                  <img src={item.image} alt={item.name} className="cart-item-image" />
+                  {item.image && (
+                    <Image 
+                      src={item.image} 
+                      alt={item.name} 
+                      width={50} 
+                      height={50} 
+                      className="cart-item-image" 
+                    />
+                  )}
                   <div>
                     <h3>{item.name}</h3>
                     <p>R${(item.price / 100).toFixed(2)}</p>
@@ -73,9 +81,6 @@ const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
           margin-bottom: 1rem;
         }
         .cart-item-image {
-          width: 50px;
-          height: 50px;
-          object-fit: cover;
           margin-right: 1rem;
         }
         .cart-total {

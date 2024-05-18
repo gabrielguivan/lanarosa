@@ -26,6 +26,12 @@ module.exports = {
   },
 };
 
+module.exports = {
+  images: {
+    domains: ['res.cloudinary.com'], // Adicione outros domínios conforme necessário
+  },
+};
+
 
 
 
