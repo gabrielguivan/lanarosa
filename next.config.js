@@ -14,6 +14,10 @@ const nextConfig = {
         source: '/uploads/:path*',
         destination: '/uploads/:path*',
       },
+      {
+        source: '/.well-known/apple-developer-merchantid-domain-association',
+        destination: '/.well-known/apple-developer-merchantid-domain-association',
+      },
     ];
   },
   env: {

@@ -42,11 +42,12 @@ const Loja = ({ products }) => {
     try {
       const { data } = await axios.post('/api/create-checkout-session', {
         items: [{
-          price: product.price_id, // Substitua com o ID do preço do Stripe
+          price: product.price_id,
           quantity: 1
         }]
       });
-      window.location.href = data.id; // Redirecionar para a página de checkout da Stripe
+      console.log('Session data:', data);
+      window.location.href = data.id;
     } catch (error) {
       console.error("Error creating checkout session:", error);
       setLoading(false);

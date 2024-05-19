@@ -1,4 +1,3 @@
-// pages/api/webhook.js
 import { buffer } from 'micro';
 import Cors from 'micro-cors';
 
@@ -28,6 +27,7 @@ const webhookHandler = async (req, res) => {
       if (event.type === 'checkout.session.completed') {
         const session = event.data.object;
         // Lógica para finalizar a compra
+        console.log('Checkout session completed:', session);
       }
 
       res.status(200).json({ received: true });
