@@ -37,13 +37,20 @@ const Loja = ({ products }) => {
     }));
   };
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (product) => {
     setLoading(true);
-    const res = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-    });
-    const { id } = await res.json();
-    window.location.href = `https://checkout.stripe.com/pay/${id}`;
+    try {
+      const { data } = await axios.post('/api/create-checkout-session', {
+        items: [{
+          price: product.price_id, // Substitua com o ID do preço do Stripe
+          quantity: 1
+        }]
+      });
+      window.location.href = data.id; // Redirecionar para a página de checkout da Stripe
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -87,7 +94,7 @@ const Loja = ({ products }) => {
                 <p>{product.description}</p>
                 <p>{product.price ? `R$${(product.price / 100).toFixed(2)}` : 'Preço não disponível'}</p>
                 <button onClick={() => addToCart(product)}>Adicionar ao Carrinho</button>
-                <button onClick={handleCheckout} disabled={loading}>
+                <button onClick={() => handleCheckout(product)} disabled={loading}>
                   {loading ? 'Loading...' : 'Comprar Agora'}
                 </button>
               </div>
