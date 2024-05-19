@@ -18,6 +18,7 @@ const Loja = ({ products }) => {
   const { addToCart, cartItemCount } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
@@ -34,6 +35,15 @@ const Loja = ({ products }) => {
       ...prevState,
       [productId]: (prevState[productId] - 1 + products.find(p => p.id === productId).images.length) % products.find(p => p.id === productId).images.length
     }));
+  };
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+    });
+    const { id } = await res.json();
+    window.location.href = `https://checkout.stripe.com/pay/${id}`;
   };
 
   return (
@@ -77,6 +87,9 @@ const Loja = ({ products }) => {
                 <p>{product.description}</p>
                 <p>{product.price ? `R$${(product.price / 100).toFixed(2)}` : 'Preço não disponível'}</p>
                 <button onClick={() => addToCart(product)}>Adicionar ao Carrinho</button>
+                <button onClick={handleCheckout} disabled={loading}>
+                  {loading ? 'Loading...' : 'Comprar Agora'}
+                </button>
               </div>
             </div>
           ))
@@ -154,6 +167,7 @@ const Loja = ({ products }) => {
           border-radius: 5px;
           cursor: pointer;
           transition: background 0.3s ease;
+          margin: 5px 0;
         }
         button:hover {
           background: var(--hover-color);
