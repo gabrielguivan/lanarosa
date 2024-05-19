@@ -1,24 +1,45 @@
-// pages/api/pagar.js
-const stripe = require('stripe')('sk_test_51PHqV207ggacgEGFaw0Ia1HkdAhAY0GESIynYZeChG82KBUx8S3DT7t66U0ia9enctPqMKt2DX7V2WF0L4lln80f00bBlh8z5d');
+import { buffer } from 'micro';
+import Cors from 'micro-cors';
+import Stripe from 'stripe';
 
-export default async function handler(req, res) {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2022-11-15',
+});
+
+const cors = Cors({
+  allowMethods: ['POST', 'HEAD'],
+});
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const webhookHandler = async (req, res) => {
   if (req.method === 'POST') {
-    const { paymentMethodId } = req.body;
+    const buf = await buffer(req);
+    const sig = req.headers['stripe-signature'];
+
+    let event;
 
     try {
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: 1000, // Valor em centavos (ex: 1000 = $10.00)
-        currency: 'brl',
-        payment_method: paymentMethodId,
-        confirm: true,
-      });
-
-      res.status(200).json({ paymentIntent });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+      event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    } catch (err) {
+      console.error(`⚠️  Webhook signature verification failed.`, err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
     }
+
+    if (event.type === 'payment_intent.succeeded') {
+      const paymentIntent = event.data.object;
+      console.log('PaymentIntent was successful!');
+    }
+
+    res.status(200).end();
   } else {
     res.setHeader('Allow', 'POST');
     res.status(405).end('Method Not Allowed');
   }
-}
+};
+
+export default cors(webhookHandler);

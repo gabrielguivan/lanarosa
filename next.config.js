@@ -1,7 +1,9 @@
 const path = require('path');
 
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   webpack(config) {
     config.resolve.modules.push(path.resolve('./'));
     return config;
@@ -14,9 +16,6 @@ module.exports = {
       },
     ];
   },
-};
-
-module.exports = {
   env: {
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
@@ -24,27 +23,23 @@ module.exports = {
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   },
-};
-
-module.exports = {
-  images: {
-    domains: ['res.cloudinary.com'], // Adicione outros domínios conforme necessário
-  },
-};
-
-
-
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
-
-module.exports = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/dp93qydui/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/uploads/**',
+      },
+    ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

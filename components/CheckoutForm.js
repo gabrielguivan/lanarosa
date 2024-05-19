@@ -40,39 +40,50 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="checkout-form">
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <CardElement className="card-element" />
+      <button type="submit" disabled={!stripe} className="pay-button">
         Pagar
       </button>
-      {error && <div>{error}</div>}
+      {error && <div className="error-message">{error}</div>}
       <style jsx>{`
         .checkout-form {
           max-width: 400px;
           margin: 0 auto;
           padding: 1rem;
           border: 1px solid #eaeaea;
+          border-radius: 8px;
+          background: #fff;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-element {
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          border: 1px solid #eaeaea;
           border-radius: 4px;
           background: #f9f9f9;
         }
-        button {
-          background: #75633a;
+        .pay-button {
+          background: var(--primary-color);
           color: white;
           border: none;
           padding: 0.75rem 1.5rem;
-          border-radius: 4px;
+          border-radius: 5px;
           cursor: pointer;
           transition: background 0.3s ease;
+          width: 100%;
+          font-size: 1rem;
         }
-        button:disabled {
+        .pay-button:disabled {
           background: #cccccc;
           cursor: not-allowed;
         }
-        button:hover {
-          background: #513939;
+        .pay-button:hover {
+          background: var(--hover-color);
         }
-        div {
+        .error-message {
           color: red;
           margin-top: 1rem;
+          text-align: center;
         }
       `}</style>
     </form>

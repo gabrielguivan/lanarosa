@@ -1,16 +1,14 @@
-import Image from 'next/image';
-import React from 'react';
+import { useContext } from 'react';
+import CartContext from '../context/CartContext';
 import Link from 'next/link';
 
-const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+const CartModal = ({ closeModal }) => {
+  const { cartItems = [], removeFromCart } = useContext(CartContext);
 
   return (
     <div className="cart-modal">
       <div className="cart-content">
-        <button className="close-button" onClick={closeModal}>
-          ×
-        </button>
+        <button className="close-button" onClick={closeModal}>×</button>
         <h2>Carrinho de Compras</h2>
         {cartItems.length === 0 ? (
           <p>Seu carrinho está vazio.</p>
@@ -19,15 +17,7 @@ const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
             <ul>
               {cartItems.map((item, index) => (
                 <li key={index} className="cart-item">
-                  {item.image && (
-                    <Image 
-                      src={item.image} 
-                      alt={item.name} 
-                      width={50} 
-                      height={50} 
-                      className="cart-item-image" 
-                    />
-                  )}
+                  <img src={item.images[0]} alt={item.name} className="cart-item-image" />
                   <div>
                     <h3>{item.name}</h3>
                     <p>R${(item.price / 100).toFixed(2)}</p>
@@ -37,9 +27,9 @@ const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
               ))}
             </ul>
             <div className="cart-total">
-              <p>Total: R${(total / 100).toFixed(2)}</p>
-              <Link href="/checkout" passHref>
-                <button onClick={closeModal}>Finalizar Compra</button>
+              <p>Total: R${(cartItems.reduce((total, item) => total + item.price, 0) / 100).toFixed(2)}</p>
+              <Link href="/checkout">
+                <button>Finalizar Compra</button>
               </Link>
             </div>
           </>
@@ -81,6 +71,9 @@ const CartModal = ({ cartItems, removeFromCart, closeModal }) => {
           margin-bottom: 1rem;
         }
         .cart-item-image {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
           margin-right: 1rem;
         }
         .cart-total {
