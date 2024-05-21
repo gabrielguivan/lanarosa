@@ -37,7 +37,7 @@ export default function Home() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main className={styles.main}>
-        <Image src={profilePic} quality="100" className={styles.image} width={100} height={100} alt="Foto de Perfil" priority="true" placeholder='blur' />
+        <Image src={profilePic} className={styles.image} width={100} height={100} alt="Foto de Perfil" placeholder='blur' />
         <div>
           <h1 className={styles.title}>
             Lana Rosa Studio
