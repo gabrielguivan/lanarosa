@@ -4,6 +4,7 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  distDir: '.next', // Diretório de saída padrão
   webpack(config) {
     config.resolve.modules.push(path.resolve('./'));
     return config;
